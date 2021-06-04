@@ -11,10 +11,10 @@ const connectRoute = require('./router/connect.router')
 app.use(express.json())
 
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: 'http://localhost:8081'
   }))
 
-
+app.use(express.static('front/dist/user-angular'))
 
 
 app.use('/api/users', userRoute)
