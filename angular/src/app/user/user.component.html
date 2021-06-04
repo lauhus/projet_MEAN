@@ -1,0 +1,24 @@
+<div>
+    <h3> Vos informations :</h3>
+    <ul>
+        <li> Votre nom :  {{ user.name }}</li>
+        <li> Votre e-mail : {{ user.mail }}</li>
+    </ul>
+    <button type='button' (click)="update()">Modifier vos informations</button>
+    <div class="form" *ngIf="change === true">
+        <div *ngIf="error !== '' ">
+            {{ error }}
+        </div>
+        <label> nom : </label>
+        <input type="text" [(ngModel)]="newName" placeholder={{newName}}/>
+        <label> E-mail : </label>
+        <input type="text" [(ngModel)]="newMail" placeholder={{newMail}}/>
+        <label> Ancien mot de passe : </label>
+        <input type="password" [(ngModel)]="oldPassword" />
+        <label> Nouveau mot de passe : </label>
+        <input type="password" [(ngModel)]="newPassword"/>
+        <button type="button" (click)="updateUser(user._id)"> Valider </button>
+    </div>
+    <button type="button" (click)="deleteUser(user._id)"> Supprimer votre compte</button>
+
+</div>

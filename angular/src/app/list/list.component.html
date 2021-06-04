@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+        <div class="head-col"> 
+            En attente
+            <button type="button" class="plus" (click)="changeNew(1)"> + </button>    
+        </div>
+        <div class="head-col">
+            En cours
+            <button type="button" class="plus" (click)="changeNew(2)"> + </button>    
+        </div>
+        <div class="head-col">
+            Terminé 
+            <button type="button" class="plus" (click)="changeNew(3)"> + </button>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div *ngIf="tasks.length !== 0">
+                <div *ngFor="let task of tasks , let i = index;">
+                    <div class="task" *ngIf="task.state === 1">
+                        <div *ngIf="task.onChange === false">
+                            <div class="head-task">
+                                {{ task.title}}
+                                <button type="button" (click)="deleteTask(task._id, i)" class="delete">X </button>
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input type="text" name="title_update"  [(ngModel)]="title_update"  placeholder={{title_update}} />
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === false" >
+                            <div class="body-task"> {{ task.content }}</div>
+                            <div class="foot-task">
+                            <button type="button" (click)="updateTask(task, i)" class="update"> Modifier </button>  
+                            <button type="button" (click)="changeState(task._id,'+',1 , i)" class="state"> -> </button>
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input name="title" [(ngModel)]="content_update" placeholder={{content_update}} />
+                                <button type="button" (click)="updateTaskFormFunction(i)"> Modifier</button>
+                                <button type="button" (click)="annuleModif(i)">X </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="col">
+            <div *ngIf="tasks.length !== 0">
+                <div *ngFor="let task of tasks ; let i = index;">
+                    <div class="task" *ngIf="task.state === 2">
+                        <div *ngIf="task.onChange === false">
+                            <div class="head-task">
+                                {{ task.title}}
+                                <button type="button" (click)="deleteTask(task._id, i)" class="delete">X </button>
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input type="text" name="title_update"  [(ngModel)]="title_update"  placeholder={{title_update}} />
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === false"> 
+                            <div class="body-task"> {{ task.content }}</div>
+                            <div class="foot-task">
+                                <button type="button" (click)="changeState(task._id,'-',2 , i)" class="state"> <- </button>
+                                <button type="button" (click)="updateTask(task , i)" class="update"> Modifier </button>  
+                                <button type="button" (click)="changeState(task._id,'+',2, i)" class="state"> -> </button>
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input name="title" [(ngModel)]="content_update" placeholder={{content_update}} />
+                                <button type="button" (click)="updateTaskFormFunction(i)"> Modifier</button>
+                                <button type="button" (click)="annuleModif(i)">X </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div *ngIf="tasks.length !== 0">    
+                <div *ngFor="let task of tasks ; let i = index">
+                    <div class="task" *ngIf="task.state === 3">
+                        <div *ngIf="task.onChange === false">
+                            <div class="head-task">
+                                {{ task.title }}
+                                <button type="button" (click)="deleteTask(task._id, i)" class="delete">X </button>
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input type="text" name="title_update"  [(ngModel)]="title_update"  placeholder={{title_update}} />
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === false">
+                            <div class="body-task"> {{ task.content }} </div>
+                            <div class="foot-task">
+                                <button type="button" (click)="changeState(task._id,'-', 3 , i)" class="state"> <- </button>
+                                <button type="button" (click)="updateTask(task , i)" class="update"> Modifier </button>  
+                            </div>
+                        </div>
+                        <div *ngIf="task.onChange === true" >
+                            <div class="head-task">
+                                <input name="title" [(ngModel)]="content_update" placeholder={{content_update}} />
+                                <button type="button" (click)="updateTaskFormFunction(i)"> Modifier</button>
+                                <button type="button" (click)="annuleModif(i)">X </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="form" *ngIf="new === true">
+            <label> Titre :</label>
+            <input type="text" [(ngModel)]="title_new" />
+            <label> Contenu </label>
+            <input type="text" [(ngModel)]="content_new"/>
+            <button type="button" (click)="newTask()"> Confirmer </button>
+    </div>
+</div>

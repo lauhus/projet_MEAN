@@ -1,0 +1,10 @@
+<div  *ngIf="loading === true"> Chargement , veuillez patienter </div>
+<div  *ngIf="error !== '' "> {{ error }} </div>
+
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="form">
+    <label> E-mail </label>
+    <input type="text" formControlName="mail" placeholder="email@exemple.fr"/>
+    <label> Mot de passe </label>
+    <input type="password" formControlName="pass"/>
+    <button type="submit"> Connexion </button>
+</form>
